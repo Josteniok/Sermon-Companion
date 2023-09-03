@@ -1,0 +1,15 @@
+{
+  "name": "sermon-companion",
+  "version": "0.0.1",
+  "description": "Software to assist with organizing your sermons.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^26.1.0"
+  }
+}
