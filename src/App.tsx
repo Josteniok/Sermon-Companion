@@ -5,7 +5,8 @@ import {
   GridCell,
   GridCellKind,
   GridColumn,
-  Item
+  Item,
+  Theme
 } from "@glideapps/glide-data-grid";
 
 const data = [
@@ -59,6 +60,10 @@ function getData([col, row]: Item): GridCell {
 
 export default function App() {
   return (
-    <DataEditor columns={columns} getCellContent={getData} rows={data.length} />
+    <DataEditor
+    theme={{
+      bgCell: "#F2F9FF"
+    }}
+    columns={columns} getCellContent={getData} rows={data.length} />
   );
 }
