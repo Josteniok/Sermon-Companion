@@ -5,7 +5,7 @@ CREATE TABLE sermons (
     primary_scripture TEXT NOT NULL,
     print INTEGER NOT NULL,
     audio INTEGER NOT NULL,
-    p_p INTEGER NOT NULL,
+    presentation INTEGER NOT NULL,
     drive INTEGER NOT NULL,
     locations TEXT NOT NULL,
     occasion TEXT NOT NULL,
