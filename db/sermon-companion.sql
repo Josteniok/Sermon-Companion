@@ -1,6 +1,6 @@
 CREATE TABLE sermons (
     catalog TEXT PRIMARY KEY,
-    date TEXT NOT NULL,
+    date_created TEXT NOT NULL,
     title TEXT NOT NULL,
     primary_scripture TEXT NOT NULL,
     print INTEGER NOT NULL,
