@@ -8,7 +8,9 @@ CREATE TABLE sermons (
     presentation INTEGER NOT NULL,
     other INTEGER NOT NULL,
     drive INTEGER NOT NULL,
-    locations TEXT NOT NULL,
-    occasion TEXT NOT NULL,
-    keywords TEXT NOT NULL
+    locations TEXT,
+    occasion TEXT,
+    keywords TEXT
 );
+.mode csv
+.import TestData.csv sermons
