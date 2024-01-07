@@ -45,6 +45,7 @@ const columns: GridColumn[] = [
 // If fetching data is slow you can use the DataEditor ref to send updates for cells
 // once data is loaded.
 function getData([col, row]: Item): GridCell {
+  let nodeversion = window.versions.node();
   const sermon = data[row];
 
   switch (col) {
