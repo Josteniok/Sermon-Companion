@@ -9,6 +9,16 @@ import {
   Theme
 } from "@glideapps/glide-data-grid";
 
+export interface IPreloadBridge {
+  node: () => string
+}
+
+declare global {
+  interface Window {
+      versions: IPreloadBridge
+  }
+}
+
 const data = [
   {
     dateCreated: "2015-07-14",
@@ -46,6 +56,7 @@ const columns: GridColumn[] = [
 // once data is loaded.
 function getData([col, row]: Item): GridCell {
   let nodeversion = window.versions.node();
+  console.log("-------------------------Node version: " + nodeversion);
   const sermon = data[row];
 
   switch (col) {

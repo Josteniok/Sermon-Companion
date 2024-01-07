@@ -3,7 +3,7 @@ export interface IPreloadBridge {
 }
 
 declare global {
-    interface Window {
+    interface window {
         versions: IPreloadBridge
     }
 }
