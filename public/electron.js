@@ -20,7 +20,7 @@ function createWindow() {
   // In development, set it to localhost to allow live/hot-reloading.
   const appURL = app.isPackaged
     ? url.format({
-        pathname: path.join(__dirname, "index.tsx"),
+        pathname: path.join(__dirname, "index.jsx"),
         protocol: "file:",
         slashes: true,
       })

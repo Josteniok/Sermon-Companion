@@ -9,16 +9,6 @@ import {
   Theme
 } from "@glideapps/glide-data-grid";
 
-export interface IPreloadBridge {
-  node: () => string
-}
-
-declare global {
-  interface Window {
-      versions: IPreloadBridge
-  }
-}
-
 const data = [
   {
     dateCreated: "2015-07-14",
@@ -37,7 +27,7 @@ const data = [
 ];
 
 // Grid columns may also provide icon, overlayIcon, menu, style, and theme overrides
-const columns: GridColumn[] = [
+const columns = [
   { title: "Created Date", width: 100 },
   { title: "Catalog", width: 65 },
   { title: "Message Title", width: 150 },
@@ -54,7 +44,7 @@ const columns: GridColumn[] = [
 
 // If fetching data is slow you can use the DataEditor ref to send updates for cells
 // once data is loaded.
-function getData([col, row]: Item): GridCell {
+function getData([col, row]) {
   let nodeversion = window.versions.node();
   console.log("-------------------------Node version: " + nodeversion);
   const sermon = data[row];
