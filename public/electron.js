@@ -1,7 +1,8 @@
 // Module to control the application lifecycle and the native browser window.
-const { app, BrowserWindow, protocol } = require("electron");
+const { app, BrowserWindow, protocol, ipcRenderer, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
+const { getSermonData } = require("../src/SermonDataAccess");
  
 // Create the native browser window.
 function createWindow() {
@@ -54,7 +55,11 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
- 
+  ipcMain.on('sermon-data-requested', (event, arg) => {
+    getSermonData().then((data) => {
+      event.reply('sermon-data-retrieved', data);
+    });
+  })
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

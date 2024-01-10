@@ -46,6 +46,10 @@ const columns = [
 // once data is loaded.
 function getData([col, row]) {
   let nodeversion = window.versions.node();
+  window.apis.requestSermonData();
+  window.apis.recieveSermonData.then((data) => {
+    console.log(data);
+  })
   console.log("-------------------------Node version: " + nodeversion);
   const sermon = data[row];
 
