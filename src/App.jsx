@@ -42,100 +42,111 @@ const columns = [
   { title: "Keywords", width: 250 }
 ];
 
+let sermons;
+window.apis.requestSermonData();
+window.apis.recieveSermonData.then((data) => {
+  sermons = data;
+});
+
 // If fetching data is slow you can use the DataEditor ref to send updates for cells
 // once data is loaded.
 function getData([col, row]) {
-  let nodeversion = window.versions.node();
-  window.apis.requestSermonData();
-  window.apis.recieveSermonData.then((data) => {
-    console.log(data);
-  })
-  console.log("-------------------------Node version: " + nodeversion);
-  const sermon = data[row];
+  // if (!sermons) {
+  //   console.log("HERE");
+  //   return "";
+  // }
+  // else {    
+    console.log(`Row ${row}, Col ${col}`);
+    console.log(`Print: ${sermons[row].print}`)
+    let nodeversion = window.versions.node();
+    console.log(nodeversion);
+    console.log(sermons);
+    const sermon = sermons[row];
 
-  switch (col) {
-    case 0:
-      return {
-        kind: GridCellKind.Text,
-        data: sermon.dateCreated,
-        allowOverlay: false,
-        displayData: sermon.dateCreated
-      };
-    case 1:
-      return {
-        kind: GridCellKind.Text,
-        data: sermon.catalog,
-        allowOverlay: false,
-        displayData: sermon.catalog
-      };
-    case 2:
-      return {
-        kind: GridCellKind.Text,
-        data: sermon.messageTitle,
-        allowOverlay: false,
-        displayData: sermon.messageTitle
-      };
-    case 3:
-      return {
-        kind: GridCellKind.Text,
-        data: sermon.primaryScripture,
-        allowOverlay: false,
-        displayData: sermon.primaryScripture
-      };
-    case 4:
-      return {
-        kind: GridCellKind.Boolean,
-        data: sermon.print,
-        allowOverlay: false
-      };
-    case 5:
-      return {
-        kind: GridCellKind.Boolean,
-        data: sermon.audio,
-        allowOverlay: false
-      };
-    case 6:
-      return {
-        kind: GridCellKind.Boolean,
-        data: sermon.presentation,
-        allowOverlay: false
-      };
-    case 7:
-      return {
-        kind: GridCellKind.Boolean,
-        data: sermon.drive,
-        allowOverlay: false
-      };
-    case 8:
-      return {
-        kind: GridCellKind.Boolean,
-        data: sermon.other,
-        allowOverlay: false
-      };
-    case 9:
-      return {
-        kind: GridCellKind.Text,
-        data: sermon.locations,
-        allowOverlay: false,
-        displayData: sermon.locations
-      };
-    case 10:
-      return {
-        kind: GridCellKind.Text,
-        data: sermon.occasionSeriesNumber,
-        allowOverlay: false,
-        displayData: sermon.occasionSeriesNumber
-      };
-    case 11:
-      return {
-        kind: GridCellKind.Text,
-        data: sermon.keywords,
-        allowOverlay: false,
-        displayData: sermon.keywords
-      };
-    default:
-      throw new Error();
-  }
+    switch (col) {
+      case 0:
+        return {
+          kind: GridCellKind.Text,
+          data: sermon.date_created,
+          allowOverlay: false,
+          displayData: sermon.date_created
+        };
+      case 1:
+        return {
+          kind: GridCellKind.Text,
+          data: sermon.catalog,
+          allowOverlay: false,
+          displayData: sermon.catalog
+        };
+      case 2:
+        return {
+          kind: GridCellKind.Text,
+          data: sermon.title,
+          allowOverlay: false,
+          displayData: sermon.title
+        };
+      case 3:
+        return {
+          kind: GridCellKind.Text,
+          data: sermon.primary_scripture,
+          allowOverlay: false,
+          displayData: sermon.primary_scripture
+        };
+      case 4:
+        return {
+          kind: GridCellKind.Boolean,
+          data: sermon.print,
+          allowOverlay: false
+        };
+      case 5:
+        return {
+          kind: GridCellKind.Boolean,
+          data: sermon.audio,
+          allowOverlay: false
+        };
+      case 6:
+        return {
+          kind: GridCellKind.Boolean,
+          data: sermon.presentation,
+          allowOverlay: false
+        };
+      case 7:
+        return {
+          kind: GridCellKind.Boolean,
+          data: sermon.drive,
+          allowOverlay: false
+        };
+      case 8:
+        return {
+          kind: GridCellKind.Boolean,
+          data: sermon.other,
+          allowOverlay: false
+        };
+      case 9:
+        return {
+          kind: GridCellKind.Text,
+          data: sermon.locations,
+          allowOverlay: false,
+          displayData: sermon.locations
+        };
+      case 10:
+        return {
+          kind: GridCellKind.Text,
+          data: sermon.occasion,
+          allowOverlay: false,
+          displayData: sermon.occasion
+        };
+      case 11:
+        return {
+          kind: GridCellKind.Text,
+          data: sermon.keywords,
+          allowOverlay: false,
+          displayData: sermon.keywords
+        };
+      default:
+        throw new Error();
+    }
+  //}
 }
 
 export default function App() {
@@ -144,6 +155,6 @@ export default function App() {
     theme={{
       bgCell: "#F2F9FF"
     }}
-    columns={columns} getCellContent={getData} rows={data.length} />
+    columns={columns} getCellContent={getData} rows={sermons.length} />
   );
 }
