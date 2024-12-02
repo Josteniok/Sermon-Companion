@@ -25,3 +25,6 @@ Cargo.lock
 
 # Zed settings
 .zed/
+
+# Supporting information used in development
+Supporting Information/
